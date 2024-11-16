@@ -55,7 +55,7 @@ class ItemFrame extends Flowable{
 		$w->bool($this->hasMap);
 	}
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		parent::readStateFromWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof TileItemFrame){
@@ -68,9 +68,9 @@ class ItemFrame extends Flowable{
 		}
 
 		return $this;
-	}
+	}*/
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof TileItemFrame){
@@ -78,7 +78,7 @@ class ItemFrame extends Flowable{
 			$tile->setItemRotation($this->itemRotation);
 			$tile->setItemDropChance($this->itemDropChance);
 		}
-	}
+	}*/
 
 	public function getFramedItem() : ?Item{
 		return $this->framedItem !== null ? clone $this->framedItem : null;
@@ -132,7 +132,7 @@ class ItemFrame extends Flowable{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($this->framedItem !== null){
+		/*if($this->framedItem !== null){
 			$this->itemRotation = ($this->itemRotation + 1) % self::ROTATIONS;
 
 			$this->position->getWorld()->addSound($this->position, new ItemFrameRotateItemSound());
@@ -144,12 +144,12 @@ class ItemFrame extends Flowable{
 			return true;
 		}
 
-		$this->position->getWorld()->setBlock($this->position, $this);
+		$this->position->getWorld()->setBlock($this->position, $this);*/
 
-		return true;
+		return false;
 	}
 
-	public function onAttack(Item $item, int $face, ?Player $player = null) : bool{
+	/*public function onAttack(Item $item, int $face, ?Player $player = null) : bool{
 		if($this->framedItem === null){
 			return false;
 		}
@@ -161,17 +161,17 @@ class ItemFrame extends Flowable{
 		$this->setFramedItem(null);
 		$world->setBlock($this->position, $this);
 		return true;
-	}
+	}*/
 
 	private function canBeSupportedAt(Block $block, int $face) : bool{
 		return $block->getAdjacentSupportType($face) !== SupportType::NONE;
 	}
 
-	public function onNearbyBlockChange() : void{
+	/*public function onNearbyBlockChange() : void{
 		if(!$this->canBeSupportedAt($this, Facing::opposite($this->facing))){
 			$this->position->getWorld()->useBreakOn($this->position);
 		}
-	}
+	}*/
 
 	public function place(BlockTransaction $tx, Item $item, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, ?Player $player = null) : bool{
 		if(!$this->canBeSupportedAt($blockReplace, Facing::opposite($face))){

@@ -74,7 +74,7 @@ class Barrel extends Opaque{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($player instanceof Player){
+		/*if($player instanceof Player){
 			$barrel = $this->position->getWorld()->getTile($this->position);
 			if($barrel instanceof TileBarrel){
 				if(!$barrel->canOpenWith($item->getCustomName())){
@@ -83,9 +83,9 @@ class Barrel extends Opaque{
 
 				$player->setCurrentWindow($barrel->getInventory());
 			}
-		}
+		}*/
 
-		return true;
+		return false;
 	}
 
 	public function getFuelTime() : int{

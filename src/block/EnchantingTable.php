@@ -45,12 +45,12 @@ class EnchantingTable extends Transparent{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($player instanceof Player){
+		/*if($player instanceof Player){
 			//TODO lock
 
 			$player->setCurrentWindow(new EnchantInventory($this->position));
-		}
+		}*/
 
-		return true;
+		return false;
 	}
 }

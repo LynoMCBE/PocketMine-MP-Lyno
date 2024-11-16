@@ -52,7 +52,7 @@ class RedstoneComparator extends Flowable{
 		$w->bool($this->powered);
 	}
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		parent::readStateFromWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof Comparator){
@@ -60,14 +60,14 @@ class RedstoneComparator extends Flowable{
 		}
 
 		return $this;
-	}
+	}*/
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		assert($tile instanceof Comparator);
 		$tile->setSignalStrength($this->signalStrength);
-	}
+	}*/
 
 	public function isSubtractMode() : bool{
 		return $this->isSubtractMode;
@@ -94,9 +94,9 @@ class RedstoneComparator extends Flowable{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		$this->isSubtractMode = !$this->isSubtractMode;
-		$this->position->getWorld()->setBlock($this->position, $this);
-		return true;
+		/*$this->isSubtractMode = !$this->isSubtractMode;
+		$this->position->getWorld()->setBlock($this->position, $this);*/
+		return false;
 	}
 
 	private function canBeSupportedAt(Block $block) : bool{

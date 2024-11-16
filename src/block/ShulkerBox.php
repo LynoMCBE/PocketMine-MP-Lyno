@@ -39,15 +39,15 @@ class ShulkerBox extends Opaque{
 		//NOOP - we don't read or write facing here, because the tile persists it
 	}
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$shulker = $this->position->getWorld()->getTile($this->position);
 		if($shulker instanceof TileShulkerBox){
 			$shulker->setFacing($this->facing);
 		}
-	}
+	}*/
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		parent::readStateFromWorld();
 		$shulker = $this->position->getWorld()->getTile($this->position);
 		if($shulker instanceof TileShulkerBox){
@@ -55,7 +55,7 @@ class ShulkerBox extends Opaque{
 		}
 
 		return $this;
-	}
+	}*/
 
 	public function getMaxStackSize() : int{
 		return 1;
@@ -67,7 +67,7 @@ class ShulkerBox extends Opaque{
 		return parent::place($tx, $item, $blockReplace, $blockClicked, $face, $clickVector, $player);
 	}
 
-	private function addDataFromTile(TileShulkerBox $tile, Item $item) : void{
+	/*private function addDataFromTile(TileShulkerBox $tile, Item $item) : void{
 		$shulkerNBT = $tile->getCleanedNBT();
 		if($shulkerNBT !== null){
 			$item->setNamedTag($shulkerNBT);
@@ -75,26 +75,26 @@ class ShulkerBox extends Opaque{
 		if($tile->hasName()){
 			$item->setCustomName($tile->getName());
 		}
-	}
+	}*/
 
 	public function getDropsForCompatibleTool(Item $item) : array{
-		$drop = $this->asItem();
+		/*$drop = $this->asItem();
 		if(($tile = $this->position->getWorld()->getTile($this->position)) instanceof TileShulkerBox){
 			$this->addDataFromTile($tile, $drop);
-		}
-		return [$drop];
+		}*/
+		return [];
 	}
 
-	public function getPickedItem(bool $addUserData = false) : Item{
+	/*public function getPickedItem(bool $addUserData = false) : Item{
 		$result = parent::getPickedItem($addUserData);
 		if($addUserData && ($tile = $this->position->getWorld()->getTile($this->position)) instanceof TileShulkerBox){
 			$this->addDataFromTile($tile, $result);
 		}
 		return $result;
-	}
+	}*/
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($player instanceof Player){
+		/*if($player instanceof Player){
 
 			$shulker = $this->position->getWorld()->getTile($this->position);
 			if($shulker instanceof TileShulkerBox){
@@ -107,9 +107,9 @@ class ShulkerBox extends Opaque{
 
 				$player->setCurrentWindow($shulker->getInventory());
 			}
-		}
+		}*/
 
-		return true;
+		return false;
 	}
 
 	public function getSupportType(int $facing) : SupportType{

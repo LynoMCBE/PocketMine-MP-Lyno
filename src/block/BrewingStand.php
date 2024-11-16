@@ -96,17 +96,17 @@ class BrewingStand extends Transparent{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($player instanceof Player){
+		/*if($player instanceof Player){
 			$stand = $this->position->getWorld()->getTile($this->position);
 			if($stand instanceof TileBrewingStand && $stand->canOpenWith($item->getCustomName())){
 				$player->setCurrentWindow($stand->getInventory());
 			}
-		}
+		}*/
 
-		return true;
+		return false;
 	}
 
-	public function onScheduledUpdate() : void{
+	/*public function onScheduledUpdate() : void{
 		$world = $this->position->getWorld();
 		$brewing = $world->getTile($this->position);
 		if($brewing instanceof TileBrewingStand){
@@ -127,5 +127,5 @@ class BrewingStand extends Transparent{
 				$world->setBlock($this->position, $this);
 			}
 		}
-	}
+	}*/
 }

@@ -32,7 +32,7 @@ class Note extends Opaque{
 
 	private int $pitch = self::MIN_PITCH;
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		parent::readStateFromWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof TileNote){
@@ -42,14 +42,14 @@ class Note extends Opaque{
 		}
 
 		return $this;
-	}
+	}*/
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		assert($tile instanceof TileNote);
 		$tile->setPitch($this->pitch);
-	}
+	}*/
 
 	public function getFuelTime() : int{
 		return 300;

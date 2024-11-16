@@ -41,7 +41,7 @@ class Jukebox extends Opaque{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($player instanceof Player){
+		/*if($player instanceof Player){
 			if($this->record !== null){
 				$this->ejectRecord();
 			}elseif($item instanceof Record){
@@ -50,9 +50,9 @@ class Jukebox extends Opaque{
 			}
 		}
 
-		$this->position->getWorld()->setBlock($this->position, $this);
+		$this->position->getWorld()->setBlock($this->position, $this);*/
 
-		return true;
+		return false;
 	}
 
 	public function getRecord() : ?Record{
@@ -97,7 +97,7 @@ class Jukebox extends Opaque{
 		return $drops;
 	}
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		parent::readStateFromWorld();
 		$jukebox = $this->position->getWorld()->getTile($this->position);
 		if($jukebox instanceof JukeboxTile){
@@ -105,15 +105,15 @@ class Jukebox extends Opaque{
 		}
 
 		return $this;
-	}
+	}*/
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$jukebox = $this->position->getWorld()->getTile($this->position);
 		if($jukebox instanceof JukeboxTile){
 			$jukebox->setRecord($this->record);
 		}
-	}
+	}*/
 
 	//TODO: Jukebox has redstone effects, they are not implemented.
 }

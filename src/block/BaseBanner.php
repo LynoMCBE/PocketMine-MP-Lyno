@@ -46,7 +46,7 @@ abstract class BaseBanner extends Transparent{
 	 */
 	protected array $patterns = [];
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		parent::readStateFromWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof TileBanner){
@@ -55,15 +55,15 @@ abstract class BaseBanner extends Transparent{
 		}
 
 		return $this;
-	}
+	}*/
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		assert($tile instanceof TileBanner);
 		$tile->setBaseColor($this->color);
 		$tile->setPatterns($this->patterns);
-	}
+	}*/
 
 	public function isSolid() : bool{
 		return false;
@@ -126,11 +126,11 @@ abstract class BaseBanner extends Transparent{
 
 	abstract protected function getSupportingFace() : int;
 
-	public function onNearbyBlockChange() : void{
+	/*public function onNearbyBlockChange() : void{
 		if(!$this->canBeSupportedBy($this->getSide($this->getSupportingFace()))){
 			$this->position->getWorld()->useBreakOn($this->position);
 		}
-	}
+	}*/
 
 	public function getDropsForCompatibleTool(Item $item) : array{
 		$drop = $this->asItem();

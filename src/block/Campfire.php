@@ -82,7 +82,7 @@ class Campfire extends Transparent{
 		$this->encodeLitState($w);
 	}
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		parent::readStateFromWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof TileCampfire){
@@ -93,15 +93,15 @@ class Campfire extends Transparent{
 		}
 
 		return $this;
-	}
+	}*/
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof TileCampfire){
 			$tile->setCookingTimes($this->cookingTimes);
 		}
-	}
+	}*/
 
 	public function hasEntityCollision() : bool{
 		return true;
@@ -173,7 +173,7 @@ class Campfire extends Transparent{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if(!$this->lit){
+		/*if(!$this->lit){
 			if($item->getTypeId() === ItemTypeIds::FIRE_CHARGE){
 				$item->pop();
 				$this->ignite();
@@ -200,36 +200,36 @@ class Campfire extends Transparent{
 				$this->position->getWorld()->addSound($this->position, new ItemFrameAddItemSound());
 				return true;
 			}
-		}
+		}*/
 		return false;
 	}
 
-	public function onNearbyBlockChange() : void{
+	/*public function onNearbyBlockChange() : void{
 		if($this->lit && $this->getSide(Facing::UP)->getTypeId() === BlockTypeIds::WATER){
 			$this->extinguish();
 			//TODO: Waterlogging
 		}
-	}
+	}*/
 
 	public function onEntityInside(Entity $entity) : bool{
-		if(!$this->lit){
+		/*if(!$this->lit){
 			if($entity->isOnFire()){
 				$this->ignite();
 				return false;
 			}
 		}elseif($entity instanceof Living){
 			$entity->attack(new EntityDamageByBlockEvent($this, $entity, EntityDamageEvent::CAUSE_FIRE, $this->getEntityCollisionDamage()));
-		}
-		return true;
+		}*/
+		return false;
 	}
 
-	public function onProjectileHit(Projectile $projectile, RayTraceResult $hitResult) : void{
+	/*public function onProjectileHit(Projectile $projectile, RayTraceResult $hitResult) : void{
 		if($this->lit && $projectile instanceof SplashPotion && $projectile->getPotionType() === PotionType::WATER){
 			$this->extinguish();
 		}
-	}
+	}*/
 
-	public function onScheduledUpdate() : void{
+	/*public function onScheduledUpdate() : void{
 		if($this->lit){
 			$items = $this->inventory->getContents();
 			$furnaceType = $this->getFurnaceType();
@@ -262,7 +262,7 @@ class Campfire extends Transparent{
 			}
 			$this->position->getWorld()->scheduleDelayedBlockUpdate($this->position, self::UPDATE_INTERVAL_TICKS);
 		}
-	}
+	}*/
 
 	private function extinguish() : void{
 		$this->position->getWorld()->addSound($this->position, new FireExtinguishSound());

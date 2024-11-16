@@ -824,21 +824,21 @@ final class VanillaBlocks{
 		self::register("bamboo_sapling", new BambooSapling(new BID(Ids::BAMBOO_SAPLING), "Bamboo Sapling", new Info(BreakInfo::instant())));
 
 		$bannerBreakInfo = new Info(BreakInfo::axe(1.0));
-		self::register("banner", new FloorBanner(new BID(Ids::BANNER, TileBanner::class), "Banner", $bannerBreakInfo));
-		self::register("wall_banner", new WallBanner(new BID(Ids::WALL_BANNER, TileBanner::class), "Wall Banner", $bannerBreakInfo));
-		self::register("barrel", new Barrel(new BID(Ids::BARREL, TileBarrel::class), "Barrel", new Info(BreakInfo::axe(2.5))));
+		self::register("banner", new FloorBanner(new BID(Ids::BANNER, null), "Banner", $bannerBreakInfo));
+		self::register("wall_banner", new WallBanner(new BID(Ids::WALL_BANNER, null), "Wall Banner", $bannerBreakInfo));
+		self::register("barrel", new Barrel(new BID(Ids::BARREL, null), "Barrel", new Info(BreakInfo::axe(2.5))));
 		self::register("barrier", new Transparent(new BID(Ids::BARRIER), "Barrier", new Info(BreakInfo::indestructible())));
-		self::register("beacon", new Beacon(new BID(Ids::BEACON, TileBeacon::class), "Beacon", new Info(new BreakInfo(3.0))));
-		self::register("bed", new Bed(new BID(Ids::BED, TileBed::class), "Bed Block", new Info(new BreakInfo(0.2))));
+		self::register("beacon", new Beacon(new BID(Ids::BEACON, null), "Beacon", new Info(new BreakInfo(3.0))));
+		self::register("bed", new Bed(new BID(Ids::BED, null), "Bed Block", new Info(new BreakInfo(0.2))));
 		self::register("bedrock", new Bedrock(new BID(Ids::BEDROCK), "Bedrock", new Info(BreakInfo::indestructible())));
 
 		self::register("beetroots", new Beetroot(new BID(Ids::BEETROOTS), "Beetroot Block", new Info(BreakInfo::instant())));
-		self::register("bell", new Bell(new BID(Ids::BELL, TileBell::class), "Bell", new Info(BreakInfo::pickaxe(5.0, ToolTier::WOOD))));
+		self::register("bell", new Bell(new BID(Ids::BELL, null), "Bell", new Info(BreakInfo::pickaxe(5.0, ToolTier::WOOD))));
 		self::register("blue_ice", new BlueIce(new BID(Ids::BLUE_ICE), "Blue Ice", new Info(BreakInfo::pickaxe(2.8))));
 		self::register("bone_block", new BoneBlock(new BID(Ids::BONE_BLOCK), "Bone Block", new Info(BreakInfo::pickaxe(2.0, ToolTier::WOOD))));
 		self::register("bookshelf", new Bookshelf(new BID(Ids::BOOKSHELF), "Bookshelf", new Info(BreakInfo::axe(1.5))));
-		self::register("chiseled_bookshelf", new ChiseledBookshelf(new BID(Ids::CHISELED_BOOKSHELF, TileChiseledBookshelf::class), "Chiseled Bookshelf", new Info(BreakInfo::axe(1.5))));
-		self::register("brewing_stand", new BrewingStand(new BID(Ids::BREWING_STAND, TileBrewingStand::class), "Brewing Stand", new Info(BreakInfo::pickaxe(0.5, ToolTier::WOOD))));
+		self::register("chiseled_bookshelf", new ChiseledBookshelf(new BID(Ids::CHISELED_BOOKSHELF, null), "Chiseled Bookshelf", new Info(BreakInfo::axe(1.5))));
+		self::register("brewing_stand", new BrewingStand(new BID(Ids::BREWING_STAND, null), "Brewing Stand", new Info(BreakInfo::pickaxe(0.5, ToolTier::WOOD))));
 
 		$bricksBreakInfo = new Info(BreakInfo::pickaxe(2.0, ToolTier::WOOD, 30.0));
 		self::register("brick_stairs", new Stair(new BID(Ids::BRICK_STAIRS), "Brick Stairs", $bricksBreakInfo));
@@ -849,8 +849,8 @@ final class VanillaBlocks{
 		self::register("cake", new Cake(new BID(Ids::CAKE), "Cake", new Info(new BreakInfo(0.5))));
 
 		$campfireBreakInfo = new Info(BreakInfo::axe(2.0));
-		self::register("campfire", new Campfire(new BID(Ids::CAMPFIRE, TileCampfire::class), "Campfire", $campfireBreakInfo));
-		self::register("soul_campfire", new SoulCampfire(new BID(Ids::SOUL_CAMPFIRE, TileCampfire::class), "Soul Campfire", $campfireBreakInfo));
+		self::register("campfire", new Campfire(new BID(Ids::CAMPFIRE, null), "Campfire", $campfireBreakInfo));
+		self::register("soul_campfire", new SoulCampfire(new BID(Ids::SOUL_CAMPFIRE, null), "Soul Campfire", $campfireBreakInfo));
 
 		self::register("carrots", new Carrot(new BID(Ids::CARROTS), "Carrot Block", new Info(BreakInfo::instant())));
 
@@ -868,7 +868,7 @@ final class VanillaBlocks{
 		self::register("cobweb", new Cobweb(new BID(Ids::COBWEB), "Cobweb", new Info(new BreakInfo(4.0, ToolType::SWORD | ToolType::SHEARS, 1))));
 		self::register("cocoa_pod", new CocoaBlock(new BID(Ids::COCOA_POD), "Cocoa Block", new Info(BreakInfo::axe(0.2, null, 15.0))));
 		self::register("coral_block", new CoralBlock(new BID(Ids::CORAL_BLOCK), "Coral Block", new Info(BreakInfo::pickaxe(7.0, ToolTier::WOOD))));
-		self::register("daylight_sensor", new DaylightSensor(new BID(Ids::DAYLIGHT_SENSOR, TileDaylightSensor::class), "Daylight Sensor", new Info(BreakInfo::axe(0.2))));
+		self::register("daylight_sensor", new DaylightSensor(new BID(Ids::DAYLIGHT_SENSOR, null), "Daylight Sensor", new Info(BreakInfo::axe(0.2))));
 		self::register("dead_bush", new DeadBush(new BID(Ids::DEAD_BUSH), "Dead Bush", new Info(BreakInfo::instant(ToolType::SHEARS, 1), [Tags::POTTABLE_PLANTS])));
 		self::register("detector_rail", new DetectorRail(new BID(Ids::DETECTOR_RAIL), "Detector Rail", $railBreakInfo));
 
@@ -887,7 +887,7 @@ final class VanillaBlocks{
 		self::register("dragon_egg", new DragonEgg(new BID(Ids::DRAGON_EGG), "Dragon Egg", new Info(BreakInfo::pickaxe(3.0, ToolTier::WOOD))));
 		self::register("dried_kelp", new DriedKelp(new BID(Ids::DRIED_KELP), "Dried Kelp Block", new Info(new BreakInfo(0.5, ToolType::NONE, 0, 12.5))));
 		self::register("emerald", new Opaque(new BID(Ids::EMERALD), "Emerald Block", new Info(BreakInfo::pickaxe(5.0, ToolTier::IRON, 30.0))));
-		self::register("enchanting_table", new EnchantingTable(new BID(Ids::ENCHANTING_TABLE, TileEnchantingTable::class), "Enchanting Table", new Info(BreakInfo::pickaxe(5.0, ToolTier::WOOD, 6000.0))));
+		self::register("enchanting_table", new EnchantingTable(new BID(Ids::ENCHANTING_TABLE, null), "Enchanting Table", new Info(BreakInfo::pickaxe(5.0, ToolTier::WOOD, 6000.0))));
 		self::register("end_portal_frame", new EndPortalFrame(new BID(Ids::END_PORTAL_FRAME), "End Portal Frame", new Info(BreakInfo::indestructible())));
 		self::register("end_rod", new EndRod(new BID(Ids::END_ROD), "End Rod", new Info(BreakInfo::instant())));
 		self::register("end_stone", new Opaque(new BID(Ids::END_STONE), "End Stone", new Info(BreakInfo::pickaxe(3.0, ToolTier::WOOD, 45.0))));
@@ -917,9 +917,9 @@ final class VanillaBlocks{
 		self::register("torchflower_crop", new TorchflowerCrop(new BID(Ids::TORCHFLOWER_CROP), "Torchflower Crop", new Info(BreakInfo::instant())));
 		self::register("flower_pot", new FlowerPot(new BID(Ids::FLOWER_POT, TileFlowerPot::class), "Flower Pot", new Info(BreakInfo::instant())));
 		self::register("frosted_ice", new FrostedIce(new BID(Ids::FROSTED_ICE), "Frosted Ice", new Info(BreakInfo::pickaxe(2.5))));
-		self::register("furnace", new Furnace(new BID(Ids::FURNACE, TileNormalFurnace::class), "Furnace", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD)), FurnaceType::FURNACE));
-		self::register("blast_furnace", new Furnace(new BID(Ids::BLAST_FURNACE, TileBlastFurnace::class), "Blast Furnace", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD)), FurnaceType::BLAST_FURNACE));
-		self::register("smoker", new Furnace(new BID(Ids::SMOKER, TileSmoker::class), "Smoker", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD)), FurnaceType::SMOKER));
+		self::register("furnace", new Furnace(new BID(Ids::FURNACE, null), "Furnace", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD)), FurnaceType::FURNACE));
+		self::register("blast_furnace", new Furnace(new BID(Ids::BLAST_FURNACE, null), "Blast Furnace", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD)), FurnaceType::BLAST_FURNACE));
+		self::register("smoker", new Furnace(new BID(Ids::SMOKER, null), "Smoker", new Info(BreakInfo::pickaxe(3.5, ToolTier::WOOD)), FurnaceType::SMOKER));
 
 		$glassBreakInfo = new Info(new BreakInfo(0.3));
 		self::register("glass", new Glass(new BID(Ids::GLASS), "Glass", $glassBreakInfo));
@@ -941,7 +941,7 @@ final class VanillaBlocks{
 		self::register("hardened_glass", new HardenedGlass(new BID(Ids::HARDENED_GLASS), "Hardened Glass", $hardenedGlassBreakInfo));
 		self::register("hardened_glass_pane", new HardenedGlassPane(new BID(Ids::HARDENED_GLASS_PANE), "Hardened Glass Pane", $hardenedGlassBreakInfo));
 		self::register("hay_bale", new HayBale(new BID(Ids::HAY_BALE), "Hay Bale", new Info(new BreakInfo(0.5))));
-		self::register("hopper", new Hopper(new BID(Ids::HOPPER, TileHopper::class), "Hopper", new Info(BreakInfo::pickaxe(3.0, ToolTier::WOOD, 15.0))));
+		self::register("hopper", new Hopper(new BID(Ids::HOPPER, null), "Hopper", new Info(BreakInfo::pickaxe(3.0, ToolTier::WOOD, 15.0))));
 		self::register("ice", new Ice(new BID(Ids::ICE), "Ice", new Info(BreakInfo::pickaxe(0.5))));
 
 		$updateBlockBreakInfo = new Info(new BreakInfo(1.0));
@@ -957,10 +957,10 @@ final class VanillaBlocks{
 		self::register("iron_trapdoor", new Trapdoor(new BID(Ids::IRON_TRAPDOOR), "Iron Trapdoor", $ironDoorBreakInfo));
 
 		$itemFrameInfo = new Info(new BreakInfo(0.25));
-		self::register("item_frame", new ItemFrame(new BID(Ids::ITEM_FRAME, TileItemFrame::class), "Item Frame", $itemFrameInfo));
-		self::register("glowing_item_frame", new ItemFrame(new BID(Ids::GLOWING_ITEM_FRAME, TileGlowingItemFrame::class), "Glow Item Frame", $itemFrameInfo));
+		self::register("item_frame", new ItemFrame(new BID(Ids::ITEM_FRAME, null), "Item Frame", $itemFrameInfo));
+		self::register("glowing_item_frame", new ItemFrame(new BID(Ids::GLOWING_ITEM_FRAME, null), "Glow Item Frame", $itemFrameInfo));
 
-		self::register("jukebox", new Jukebox(new BID(Ids::JUKEBOX, TileJukebox::class), "Jukebox", new Info(BreakInfo::axe(0.8)))); //TODO: in PC the hardness is 2.0, not 0.8, unsure if this is a MCPE bug or not
+		self::register("jukebox", new Jukebox(new BID(Ids::JUKEBOX, null), "Jukebox", new Info(BreakInfo::axe(0.8)))); //TODO: in PC the hardness is 2.0, not 0.8, unsure if this is a MCPE bug or not
 		self::register("ladder", new Ladder(new BID(Ids::LADDER), "Ladder", new Info(BreakInfo::axe(0.4))));
 
 		$lanternBreakInfo = new Info(BreakInfo::pickaxe(5.0, ToolTier::WOOD));
@@ -969,7 +969,7 @@ final class VanillaBlocks{
 
 		self::register("lapis_lazuli", new Opaque(new BID(Ids::LAPIS_LAZULI), "Lapis Lazuli Block", new Info(BreakInfo::pickaxe(3.0, ToolTier::STONE))));
 		self::register("lava", new Lava(new BID(Ids::LAVA), "Lava", new Info(BreakInfo::indestructible(500.0))));
-		self::register("lectern", new Lectern(new BID(Ids::LECTERN, TileLectern::class), "Lectern", new Info(BreakInfo::axe(2.0))));
+		self::register("lectern", new Lectern(new BID(Ids::LECTERN, null), "Lectern", new Info(BreakInfo::axe(2.0))));
 		self::register("lever", new Lever(new BID(Ids::LEVER), "Lever", new Info(new BreakInfo(0.5))));
 		self::register("magma", new Magma(new BID(Ids::MAGMA), "Magma Block", new Info(BreakInfo::pickaxe(0.5, ToolTier::WOOD))));
 		self::register("melon", new Melon(new BID(Ids::MELON), "Melon Block", new Info(BreakInfo::axe(1.0))));
@@ -991,7 +991,7 @@ final class VanillaBlocks{
 		self::register("nether_wart_block", new Opaque(new BID(Ids::NETHER_WART_BLOCK), "Nether Wart Block", new Info(new BreakInfo(1.0, ToolType::HOE))));
 		self::register("nether_wart", new NetherWartPlant(new BID(Ids::NETHER_WART), "Nether Wart", new Info(BreakInfo::instant())));
 		self::register("netherrack", new Netherrack(new BID(Ids::NETHERRACK), "Netherrack", new Info(BreakInfo::pickaxe(0.4, ToolTier::WOOD))));
-		self::register("note_block", new Note(new BID(Ids::NOTE_BLOCK, TileNote::class), "Note Block", new Info(BreakInfo::axe(0.8))));
+		self::register("note_block", new Note(new BID(Ids::NOTE_BLOCK, null), "Note Block", new Info(BreakInfo::axe(0.8))));
 		self::register("obsidian", new Opaque(new BID(Ids::OBSIDIAN), "Obsidian", new Info(BreakInfo::pickaxe(35.0 /* 50 in PC */,  ToolTier::DIAMOND, 6000.0))));
 		self::register("packed_ice", new PackedIce(new BID(Ids::PACKED_ICE), "Packed Ice", new Info(BreakInfo::pickaxe(0.5))));
 		self::register("podzol", new Podzol(new BID(Ids::PODZOL), "Podzol", new Info(BreakInfo::shovel(0.5), [Tags::DIRT])));
@@ -1031,7 +1031,7 @@ final class VanillaBlocks{
 		self::register("rail", new Rail(new BID(Ids::RAIL), "Rail", $railBreakInfo));
 		self::register("red_mushroom", new RedMushroom(new BID(Ids::RED_MUSHROOM), "Red Mushroom", new Info(BreakInfo::instant(), [Tags::POTTABLE_PLANTS])));
 		self::register("redstone", new Redstone(new BID(Ids::REDSTONE), "Redstone Block", new Info(BreakInfo::pickaxe(5.0, ToolTier::WOOD, 30.0))));
-		self::register("redstone_comparator", new RedstoneComparator(new BID(Ids::REDSTONE_COMPARATOR, TileComparator::class), "Redstone Comparator", new Info(BreakInfo::instant())));
+		self::register("redstone_comparator", new RedstoneComparator(new BID(Ids::REDSTONE_COMPARATOR, null), "Redstone Comparator", new Info(BreakInfo::instant())));
 		self::register("redstone_lamp", new RedstoneLamp(new BID(Ids::REDSTONE_LAMP), "Redstone Lamp", new Info(new BreakInfo(0.3))));
 		self::register("redstone_repeater", new RedstoneRepeater(new BID(Ids::REDSTONE_REPEATER), "Redstone Repeater", new Info(BreakInfo::instant())));
 		self::register("redstone_torch", new RedstoneTorch(new BID(Ids::REDSTONE_TORCH), "Redstone Torch", new Info(BreakInfo::instant())));
@@ -1206,7 +1206,7 @@ final class VanillaBlocks{
 		self::register("smooth_sandstone", new Opaque(new BID(Ids::SMOOTH_SANDSTONE), "Smooth Sandstone", $sandstoneBreakInfo));
 
 		self::register("glazed_terracotta", new GlazedTerracotta(new BID(Ids::GLAZED_TERRACOTTA), "Glazed Terracotta", new Info(BreakInfo::pickaxe(1.4, ToolTier::WOOD))));
-		self::register("dyed_shulker_box", new DyedShulkerBox(new BID(Ids::DYED_SHULKER_BOX, TileShulkerBox::class), "Dyed Shulker Box", $shulkerBoxBreakInfo));
+		self::register("dyed_shulker_box", new DyedShulkerBox(new BID(Ids::DYED_SHULKER_BOX, null), "Dyed Shulker Box", $shulkerBoxBreakInfo));
 		self::register("stained_glass", new StainedGlass(new BID(Ids::STAINED_GLASS), "Stained Glass", $glassBreakInfo));
 		self::register("stained_glass_pane", new StainedGlassPane(new BID(Ids::STAINED_GLASS_PANE), "Stained Glass Pane", $glassBreakInfo));
 		self::register("stained_clay", new StainedHardenedClay(new BID(Ids::STAINED_CLAY), "Stained Clay", $hardenedClayBreakInfo));
@@ -1716,9 +1716,9 @@ final class VanillaBlocks{
 	private static function registerCauldronBlocks() : void{
 		$cauldronBreakInfo = new Info(BreakInfo::pickaxe(2, ToolTier::WOOD));
 
-		self::register("cauldron", new Cauldron(new BID(Ids::CAULDRON, TileCauldron::class), "Cauldron", $cauldronBreakInfo));
-		self::register("water_cauldron", new WaterCauldron(new BID(Ids::WATER_CAULDRON, TileCauldron::class), "Water Cauldron", $cauldronBreakInfo));
-		self::register("lava_cauldron", new LavaCauldron(new BID(Ids::LAVA_CAULDRON, TileCauldron::class), "Lava Cauldron", $cauldronBreakInfo));
-		self::register("potion_cauldron", new PotionCauldron(new BID(Ids::POTION_CAULDRON, TileCauldron::class), "Potion Cauldron", $cauldronBreakInfo));
+		self::register("cauldron", new Cauldron(new BID(Ids::CAULDRON, null), "Cauldron", $cauldronBreakInfo));
+		self::register("water_cauldron", new WaterCauldron(new BID(Ids::WATER_CAULDRON, null), "Water Cauldron", $cauldronBreakInfo));
+		self::register("lava_cauldron", new LavaCauldron(new BID(Ids::LAVA_CAULDRON, null), "Lava Cauldron", $cauldronBreakInfo));
+		self::register("potion_cauldron", new PotionCauldron(new BID(Ids::POTION_CAULDRON, null), "Potion Cauldron", $cauldronBreakInfo));
 	}
 }

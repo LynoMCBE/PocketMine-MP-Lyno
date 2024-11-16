@@ -49,7 +49,7 @@ class Lectern extends Transparent{
 		$w->bool($this->producingSignal);
 	}
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		parent::readStateFromWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof TileLectern){
@@ -58,16 +58,16 @@ class Lectern extends Transparent{
 		}
 
 		return $this;
-	}
+	}*/
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof TileLectern){
 			$tile->setViewedPage($this->viewedPage);
 			$tile->setBook($this->book);
 		}
-	}
+	}*/
 
 	public function getFlammability() : int{
 		return 30;
@@ -120,23 +120,23 @@ class Lectern extends Transparent{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($this->book === null && $item instanceof WritableBookBase){
+		/*if($this->book === null && $item instanceof WritableBookBase){
 			$world = $this->position->getWorld();
 			$world->setBlock($this->position, $this->setBook($item));
 			$world->addSound($this->position, new LecternPlaceBookSound());
 			$item->pop();
-		}
-		return true;
+		}*/
+		return false;
 	}
 
-	public function onAttack(Item $item, int $face, ?Player $player = null) : bool{
+	/*public function onAttack(Item $item, int $face, ?Player $player = null) : bool{
 		if($this->book !== null){
 			$world = $this->position->getWorld();
 			$world->dropItem($this->position->up(), $this->book);
 			$world->setBlock($this->position, $this->setBook(null));
 		}
 		return false;
-	}
+	}*/
 
 	public function onPageTurn(int $newPage) : bool{
 		if($newPage === $this->viewedPage){
@@ -158,10 +158,10 @@ class Lectern extends Transparent{
 		return true;
 	}
 
-	public function onScheduledUpdate() : void{
+	/*public function onScheduledUpdate() : void{
 		if($this->producingSignal){
 			$this->producingSignal = false;
 			$this->position->getWorld()->setBlock($this->position, $this);
 		}
-	}
+	}*/
 }

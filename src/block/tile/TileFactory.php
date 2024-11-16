@@ -50,35 +50,35 @@ final class TileFactory{
 	private array $saveNames = [];
 
 	public function __construct(){
-		$this->register(Barrel::class, ["Barrel", "minecraft:barrel"]);
-		$this->register(Banner::class, ["Banner", "minecraft:banner"]);
-		$this->register(Beacon::class, ["Beacon", "minecraft:beacon"]);
-		$this->register(Bed::class, ["Bed", "minecraft:bed"]);
-		$this->register(Bell::class, ["Bell", "minecraft:bell"]);
-		$this->register(BlastFurnace::class, ["BlastFurnace", "minecraft:blast_furnace"]);
-		$this->register(BrewingStand::class, ["BrewingStand", "minecraft:brewing_stand"]);
-		$this->register(Campfire::class, ["Campfire", "minecraft:campfire"]);
-		$this->register(Cauldron::class, ["Cauldron", "minecraft:cauldron"]);
+		// $this->register(Barrel::class, ["Barrel", "minecraft:barrel"]);
+		// $this->register(Banner::class, ["Banner", "minecraft:banner"]);
+		// $this->register(Beacon::class, ["Beacon", "minecraft:beacon"]);
+		// $this->register(Bed::class, ["Bed", "minecraft:bed"]);
+		// $this->register(Bell::class, ["Bell", "minecraft:bell"]);
+		// $this->register(BlastFurnace::class, ["BlastFurnace", "minecraft:blast_furnace"]);
+		// $this->register(BrewingStand::class, ["BrewingStand", "minecraft:brewing_stand"]);
+		// $this->register(Campfire::class, ["Campfire", "minecraft:campfire"]);
+		// $this->register(Cauldron::class, ["Cauldron", "minecraft:cauldron"]);
 		$this->register(Chest::class, ["Chest", "minecraft:chest"]);
-		$this->register(ChiseledBookshelf::class, ["ChiseledBookshelf", "minecraft:chiseled_bookshelf"]);
-		$this->register(Comparator::class, ["Comparator", "minecraft:comparator"]);
-		$this->register(DaylightSensor::class, ["DaylightDetector", "minecraft:daylight_detector"]);
-		$this->register(EnchantTable::class, ["EnchantTable", "minecraft:enchanting_table"]);
+		// $this->register(ChiseledBookshelf::class, ["ChiseledBookshelf", "minecraft:chiseled_bookshelf"]);
+		// $this->register(Comparator::class, ["Comparator", "minecraft:comparator"]);
+		// $this->register(DaylightSensor::class, ["DaylightDetector", "minecraft:daylight_detector"]);
+		// $this->register(EnchantTable::class, ["EnchantTable", "minecraft:enchanting_table"]);
 		$this->register(EnderChest::class, ["EnderChest", "minecraft:ender_chest"]);
 		$this->register(FlowerPot::class, ["FlowerPot", "minecraft:flower_pot"]);
-		$this->register(NormalFurnace::class, ["Furnace", "minecraft:furnace"]);
-		$this->register(Hopper::class, ["Hopper", "minecraft:hopper"]);
-		$this->register(ItemFrame::class, ["ItemFrame"]); //this is an entity in PC
-		$this->register(Jukebox::class, ["Jukebox", "RecordPlayer", "minecraft:jukebox"]);
-		$this->register(Lectern::class, ["Lectern", "minecraft:lectern"]);
+		// $this->register(NormalFurnace::class, ["Furnace", "minecraft:furnace"]);
+		// $this->register(Hopper::class, ["Hopper", "minecraft:hopper"]);
+		// $this->register(ItemFrame::class, ["ItemFrame"]); //this is an entity in PC
+		// $this->register(Jukebox::class, ["Jukebox", "RecordPlayer", "minecraft:jukebox"]);
+		// $this->register(Lectern::class, ["Lectern", "minecraft:lectern"]);
 		$this->register(MonsterSpawner::class, ["MobSpawner", "minecraft:mob_spawner"]);
-		$this->register(Note::class, ["Music", "minecraft:noteblock"]);
-		$this->register(ShulkerBox::class, ["ShulkerBox", "minecraft:shulker_box"]);
+		// $this->register(Note::class, ["Music", "minecraft:noteblock"]);
+		// $this->register(ShulkerBox::class, ["ShulkerBox", "minecraft:shulker_box"]);
 		$this->register(Sign::class, ["Sign", "minecraft:sign"]);
-		$this->register(Smoker::class, ["Smoker", "minecraft:smoker"]);
+		// $this->register(Smoker::class, ["Smoker", "minecraft:smoker"]);
 		$this->register(SporeBlossom::class, ["SporeBlossom", "minecraft:spore_blossom"]);
 		$this->register(MobHead::class, ["Skull", "minecraft:skull"]);
-		$this->register(GlowingItemFrame::class, ["GlowItemFrame"]);
+		// $this->register(GlowingItemFrame::class, ["GlowItemFrame"]);
 
 		//TODO: ChalkboardBlock
 		//TODO: ChemistryTable

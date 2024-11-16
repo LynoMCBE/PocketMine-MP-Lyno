@@ -55,7 +55,7 @@ class ChiseledBookshelf extends Opaque{
 		$w->enumSet($this->slots, ChiseledBookshelfSlot::cases());
 	}
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		$tile = $this->position->getWorld()->getTile($this->position);
 		if($tile instanceof TileChiseledBookshelf){
 			$this->lastInteractedSlot = $tile->getLastInteractedSlot();
@@ -63,16 +63,7 @@ class ChiseledBookshelf extends Opaque{
 			$this->lastInteractedSlot = null;
 		}
 		return $this;
-	}
-
-	public function writeStateToWorld() : void{
-		parent::writeStateToWorld();
-
-		$tile = $this->position->getWorld()->getTile($this->position);
-		if($tile instanceof TileChiseledBookshelf){
-			$tile->setLastInteractedSlot($this->lastInteractedSlot);
-		}
-	}
+	}*/
 
 	/**
 	 * Returns whether the given slot is displayed as occupied.
@@ -131,7 +122,7 @@ class ChiseledBookshelf extends Opaque{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($face !== $this->facing){
+		/*if($face !== $this->facing){
 			return false;
 		}
 
@@ -160,8 +151,8 @@ class ChiseledBookshelf extends Opaque{
 			return true;
 		}
 
-		$this->position->getWorld()->setBlock($this->position, $this);
-		return true;
+		$this->position->getWorld()->setBlock($this->position, $this);*/
+		return false;
 	}
 
 	public function getDropsForCompatibleTool(Item $item) : array{

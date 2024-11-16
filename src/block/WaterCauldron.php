@@ -62,7 +62,7 @@ final class WaterCauldron extends FillableCauldron{
 
 	private ?Color $customWaterColor = null;
 
-	public function readStateFromWorld() : Block{
+	/*public function readStateFromWorld() : Block{
 		$result = parent::readStateFromWorld();
 		if($result !== $this){
 			return $result;
@@ -81,15 +81,15 @@ final class WaterCauldron extends FillableCauldron{
 		$this->customWaterColor = $tile instanceof TileCauldron ? $tile->getCustomWaterColor() : null;
 
 		return $this;
-	}
+	}*/
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		assert($tile instanceof TileCauldron);
 		$tile->setCustomWaterColor($this->customWaterColor);
 		$tile->setPotionItem(null);
-	}
+	}*/
 
 	public function getCustomWaterColor() : ?Color{ return $this->customWaterColor; }
 
@@ -108,7 +108,7 @@ final class WaterCauldron extends FillableCauldron{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		$world = $this->position->getWorld();
+		/*$world = $this->position->getWorld();
 		if(($dyeColor = match($item->getTypeId()){
 				ItemTypeIds::LAPIS_LAZULI => DyeColor::BLUE,
 				ItemTypeIds::INK_SAC => DyeColor::BLACK,
@@ -174,7 +174,7 @@ final class WaterCauldron extends FillableCauldron{
 				ItemTypeIds::LAVA_BUCKET, ItemTypeIds::POWDER_SNOW_BUCKET => $this->mix($item, VanillaItems::BUCKET(), $returnedItems),
 				default => null
 			};
-		}
+		}*/
 
 		return true;
 	}
@@ -182,17 +182,17 @@ final class WaterCauldron extends FillableCauldron{
 	public function hasEntityCollision() : bool{ return true; }
 
 	public function onEntityInside(Entity $entity) : bool{
-		if($entity->isOnFire()){
+		/*if($entity->isOnFire()){
 			$entity->extinguish();
 			//TODO: particles
 
 			$this->position->getWorld()->setBlock($this->position, $this->withFillLevel($this->getFillLevel() - self::ENTITY_EXTINGUISH_USE_AMOUNT));
-		}
+		}*/
 
-		return true;
+		return false;
 	}
 
-	public function onNearbyBlockChange() : void{
+	/*public function onNearbyBlockChange() : void{
 		$hasCustomWaterColor = $this->customWaterColor !== null;
 		if($this->getFillLevel() < self::MAX_FILL_LEVEL || $hasCustomWaterColor){
 			$world = $this->position->getWorld();
@@ -204,5 +204,5 @@ final class WaterCauldron extends FillableCauldron{
 				$world->addSound($this->position->add(0.5, 0.5, 0.5), $this->getFillSound());
 			}
 		}
-	}
+	}*/
 }

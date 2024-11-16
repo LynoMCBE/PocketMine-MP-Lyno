@@ -123,32 +123,32 @@ final class Bell extends Transparent{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($player !== null){
+		/*if($player !== null){
 			$faceHit = Facing::opposite($player->getHorizontalFacing());
 			if($this->isValidFaceToRing($faceHit)){
 				$this->ring($faceHit);
 				return true;
 			}
-		}
+		}*/
 
 		return false;
 	}
 
-	public function onProjectileHit(Projectile $projectile, RayTraceResult $hitResult) : void{
+	/*public function onProjectileHit(Projectile $projectile, RayTraceResult $hitResult) : void{
 		$faceHit = Facing::opposite($projectile->getHorizontalFacing());
 		if($this->isValidFaceToRing($faceHit)){
 			$this->ring($faceHit);
 		}
-	}
+	}*/
 
-	public function ring(int $faceHit) : void{
+	/*public function ring(int $faceHit) : void{
 		$world = $this->position->getWorld();
 		$world->addSound($this->position, new BellRingSound());
 		$tile = $world->getTile($this->position);
 		if($tile instanceof TileBell){
 			$world->broadcastPacketToViewers($this->position, $tile->createFakeUpdatePacket($faceHit));
 		}
-	}
+	}*/
 
 	public function getDropsForIncompatibleTool(Item $item) : array{
 		return [$this->asItem()];

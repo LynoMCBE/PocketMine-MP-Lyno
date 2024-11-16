@@ -40,14 +40,14 @@ use function assert;
 
 final class LavaCauldron extends FillableCauldron{
 
-	public function writeStateToWorld() : void{
+	/*public function writeStateToWorld() : void{
 		parent::writeStateToWorld();
 		$tile = $this->position->getWorld()->getTile($this->position);
 		assert($tile instanceof TileCauldron);
 
 		$tile->setCustomWaterColor(null);
 		$tile->setPotionItem(null);
-	}
+	}*/
 
 	public function getLightLevel() : int{
 		return 15;
@@ -62,27 +62,27 @@ final class LavaCauldron extends FillableCauldron{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		match($item->getTypeId()){
+		/*match($item->getTypeId()){
 			ItemTypeIds::BUCKET => $this->removeFillLevels(self::MAX_FILL_LEVEL, $item, VanillaItems::LAVA_BUCKET(), $returnedItems),
 			ItemTypeIds::POWDER_SNOW_BUCKET, ItemTypeIds::WATER_BUCKET => $this->mix($item, VanillaItems::BUCKET(), $returnedItems),
 			ItemTypeIds::LINGERING_POTION, ItemTypeIds::POTION, ItemTypeIds::SPLASH_POTION => $this->mix($item, VanillaItems::GLASS_BOTTLE(), $returnedItems),
 			default => null
-		};
-		return true;
+		};*/
+		return false;
 	}
 
 	public function hasEntityCollision() : bool{ return true; }
 
 	public function onEntityInside(Entity $entity) : bool{
-		$ev = new EntityDamageByBlockEvent($this, $entity, EntityDamageEvent::CAUSE_LAVA, 4);
+		/*$ev = new EntityDamageByBlockEvent($this, $entity, EntityDamageEvent::CAUSE_LAVA, 4);
 		$entity->attack($ev);
 
 		$ev = new EntityCombustByBlockEvent($this, $entity, 8);
 		$ev->call();
 		if(!$ev->isCancelled()){
 			$entity->setOnFire($ev->getDuration());
-		}
+		}*/
 
-		return true;
+		return false;
 	}
 }

@@ -58,17 +58,17 @@ class Furnace extends Opaque{
 	}
 
 	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
-		if($player instanceof Player){
+		/*if($player instanceof Player){
 			$furnace = $this->position->getWorld()->getTile($this->position);
 			if($furnace instanceof TileFurnace && $furnace->canOpenWith($item->getCustomName())){
 				$player->setCurrentWindow($furnace->getInventory());
 			}
-		}
+		}*/
 
-		return true;
+		return false;
 	}
 
-	public function onScheduledUpdate() : void{
+	/*public function onScheduledUpdate() : void{
 		$world = $this->position->getWorld();
 		$furnace = $world->getTile($this->position);
 		if($furnace instanceof TileFurnace && $furnace->onUpdate()){
@@ -77,5 +77,5 @@ class Furnace extends Opaque{
 			}
 			$world->scheduleDelayedBlockUpdate($this->position, 1); //TODO: check this
 		}
-	}
+	}*/
 }

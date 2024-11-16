@@ -32,11 +32,11 @@ use pocketmine\player\Player;
 final class Loom extends Opaque{
 	use FacesOppositePlacingPlayerTrait;
 
-	public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
+	/*public function onInteract(Item $item, int $face, Vector3 $clickVector, ?Player $player = null, array &$returnedItems = []) : bool{
 		if($player !== null){
 			$player->setCurrentWindow(new LoomInventory($this->position));
 			return true;
 		}
 		return false;
-	}
+	}*/
 }
