@@ -294,6 +294,11 @@ class Server{
 	/** @var Player[] */
 	private array $playerList = [];
 
+    /**
+     * @var string[]
+     */
+    private array $uuidList = [];
+
 	private SignalHandler $signalHandler;
 
 	/**
@@ -636,14 +641,7 @@ class Server{
 	 * Returns an online player with the given name (case insensitive), or null if not found.
 	 */
 	public function getPlayerExact(string $name) : ?Player{
-		$name = strtolower($name);
-		foreach($this->getOnlinePlayers() as $player){
-			if(strtolower($player->getName()) === $name){
-				return $player;
-			}
-		}
-
-		return null;
+        return $this->getPlayerByRawUUID($this->uuidList[str_replace(" ", "_", strtolower($name))] ?? "");
 	}
 
 	/**
@@ -1733,6 +1731,7 @@ class Server{
 		}
 		$rawUUID = $player->getUniqueId()->getBytes();
 		$this->playerList[$rawUUID] = $player;
+        $this->uuidList[str_replace(" ", "_", strtolower($player->getName()))] = $rawUUID;
 
 		if($this->sendUsageTicker > 0){
 			$this->uniquePlayers[$rawUUID] = $rawUUID;
@@ -1744,6 +1743,7 @@ class Server{
 	public function removeOnlinePlayer(Player $player) : void{
 		if(isset($this->playerList[$rawUUID = $player->getUniqueId()->getBytes()])){
 			unset($this->playerList[$rawUUID]);
+            unset($this->uuidList[strtolower($player->getName())]);
 			foreach($this->playerList as $p){
 				$p->getNetworkSession()->onPlayerRemoved($player);
 			}
