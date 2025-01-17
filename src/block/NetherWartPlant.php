@@ -54,8 +54,6 @@ class NetherWartPlant extends Flowable{
 	}
 
 	public function getDropsForCompatibleTool(Item $item) : array{
-		return [
-			$this->asItem()->setCount($this->age === self::MAX_AGE ? FortuneDropHelper::discrete($item, 2, 4) : 1)
-		];
+		return [];
 	}
 }
