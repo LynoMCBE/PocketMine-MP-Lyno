@@ -125,31 +125,29 @@ class EffectManager{
 	 */
 	public function add(EffectInstance $effect) : bool{
 		$oldEffect = null;
-		$cancelled = false;
 
-		$index = spl_object_id($effect->getType());
+        $effectType = $effect->getType();
+        $index = spl_object_id($effectType);
 		if(isset($this->effects[$index])){
 			$oldEffect = $this->effects[$index];
-			if(
+			/*if(
 				abs($effect->getAmplifier()) < $oldEffect->getAmplifier()
 				|| (abs($effect->getAmplifier()) === abs($oldEffect->getAmplifier()) && $effect->getDuration() < $oldEffect->getDuration())
 			){
 				$cancelled = true;
-			}
-		}
+			}*/
+            $oldEffectType = $oldEffect->getType();
+            if (!($oldEffectType instanceof HealthBoostEffect && $effectType instanceof HealthBoostEffect)) {
+                unset($this->effects[$index]);
+                $oldEffect->getType()->remove($this->entity, $oldEffect);
+            }
+        }
 
 		$ev = new EntityEffectAddEvent($this->entity, $effect, $oldEffect);
-		if($cancelled){
-			$ev->cancel();
-		}
 
 		$ev->call();
-		if($ev->isCancelled()){
+		if($ev->isCancelled()) {
 			return false;
-		}
-
-		if($oldEffect !== null){
-			$oldEffect->getType()->remove($this->entity, $oldEffect);
 		}
 
 		$effect->getType()->add($this->entity, $effect);
