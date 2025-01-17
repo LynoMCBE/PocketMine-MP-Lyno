@@ -33,7 +33,7 @@ namespace pocketmine\event;
  */
 trait CancellableTrait{
 	/** @var bool */
-	private $isCancelled = false;
+	private bool $isCancelled = false;
 
 	public function isCancelled() : bool{
 		return $this->isCancelled;
