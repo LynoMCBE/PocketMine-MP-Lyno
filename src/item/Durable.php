@@ -26,7 +26,7 @@ namespace pocketmine\item;
 use pocketmine\event\inventory\ItemDamageEvent;
 use pocketmine\item\enchantment\VanillaEnchantments;
 use pocketmine\nbt\tag\CompoundTag;
-use function lcg_value;
+use pocketmine\utils\Utils;
 use function min;
 
 abstract class Durable extends Item{

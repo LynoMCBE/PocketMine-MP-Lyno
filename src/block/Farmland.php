@@ -30,7 +30,8 @@ use pocketmine\event\entity\EntityTrampleFarmlandEvent;
 use pocketmine\item\Item;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Facing;
-use function lcg_value;
+use pocketmine\utils\Utils;
+use function intdiv;
 
 class Farmland extends Transparent{
 	public const MAX_WETNESS = 7;
@@ -90,9 +91,6 @@ class Farmland extends Transparent{
 		return $this;
 	}
 
-	/**
-	 * @return AxisAlignedBB[]
-	 */
 	protected function recalculateCollisionBoxes() : array{
 		return [AxisAlignedBB::one()->trim(Facing::UP, 1 / 16)];
 	}
@@ -108,7 +106,7 @@ class Farmland extends Transparent{
 	}
 
 	public function onEntityLand(Entity $entity) : ?float{
-		if($entity instanceof Living && lcg_value() < $entity->getFallDistance() - 0.5){
+		if($entity instanceof Living && Utils::getRandomFloat() < $entity->getFallDistance() - 0.5){
 			$ev = new EntityTrampleFarmlandEvent($entity, $this);
 			$ev->call();
 			if(!$ev->isCancelled()){

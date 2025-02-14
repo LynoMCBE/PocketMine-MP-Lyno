@@ -67,6 +67,8 @@ use function is_nan;
 use function is_object;
 use function is_string;
 use function mb_check_encoding;
+use function mt_getrandmax;
+use function mt_rand;
 use function ob_end_clean;
 use function ob_get_contents;
 use function ob_start;
@@ -165,6 +167,7 @@ final class Utils{
 
 	/**
 	 * @phpstan-return \Closure(object) : object
+	 * @deprecated
 	 */
 	public static function cloneCallback() : \Closure{
 		return static function(object $o){
@@ -177,15 +180,13 @@ final class Utils{
 	 * @phpstan-template TValue of object
 	 *
 	 * @param object[] $array
-	 * @phpstan-param array<TKey, TValue> $array
+	 * @phpstan-param array<TKey, TValue>|list<TValue> $array
 	 *
 	 * @return object[]
-	 * @phpstan-return array<TKey, TValue>
+	 * @phpstan-return ($array is list<TValue> ? list<TValue> : array<TKey, TValue>)
 	 */
 	public static function cloneObjectArray(array $array) : array{
-		/** @phpstan-var \Closure(TValue) : TValue $callback */
-		$callback = self::cloneCallback();
-		return array_map($callback, $array);
+		return array_map(fn(object $o) => clone $o, $array);
 	}
 
 	/**
@@ -218,7 +219,7 @@ final class Utils{
 			$mac = implode("\n", $mac);
 			if(preg_match_all("#Physical Address[. ]{1,}: ([0-9A-F\\-]{17})#", $mac, $matches) > 0){
 				foreach($matches[1] as $i => $v){
-					if($v == "00-00-00-00-00-00"){
+					if($v === "00-00-00-00-00-00"){
 						unset($matches[1][$i]);
 					}
 				}
@@ -232,7 +233,7 @@ final class Utils{
 				$mac = implode("\n", $mac);
 				if(preg_match_all("#HWaddr[ \t]{1,}([0-9a-f:]{17})#", $mac, $matches) > 0){
 					foreach($matches[1] as $i => $v){
-						if($v == "00:00:00:00:00:00"){
+						if($v === "00:00:00:00:00:00"){
 							unset($matches[1][$i]);
 						}
 					}
@@ -404,6 +405,7 @@ final class Utils{
 
 	/**
 	 * @param mixed[][] $trace
+	 * @phpstan-param list<array<string, mixed>>|null $trace
 	 * @return string[]
 	 */
 	public static function printableExceptionInfo(\Throwable $e, $trace = null) : array{
@@ -467,7 +469,15 @@ final class Utils{
 				}
 				$params = implode(", ", $paramsList);
 			}
-			$messages[] = "#$i " . (isset($trace[$i]["file"]) ? Filesystem::cleanPath($trace[$i]["file"]) : "") . "(" . (isset($trace[$i]["line"]) ? $trace[$i]["line"] : "") . "): " . (isset($trace[$i]["class"]) ? $trace[$i]["class"] . (($trace[$i]["type"] === "dynamic" || $trace[$i]["type"] === "->") ? "->" : "::") : "") . $trace[$i]["function"] . "(" . Utils::printable($params) . ")";
+			$messages[] = "#$i " .
+				(isset($trace[$i]["file"]) ? Filesystem::cleanPath($trace[$i]["file"]) : "") .
+				"(" . (isset($trace[$i]["line"]) ? $trace[$i]["line"] : "") . "): " .
+				(isset($trace[$i]["class"]) ?
+					$trace[$i]["class"] . (($trace[$i]["type"] === "dynamic" || $trace[$i]["type"] === "->") ? "->" : "::") :
+					""
+				) .
+				$trace[$i]["function"] .
+				"(" . Utils::printable($params) . ")";
 		}
 		return $messages;
 	}
@@ -488,7 +498,7 @@ final class Utils{
 			$rawFrame = $rawTrace[$frameId];
 			$safeTrace[$frameId] = new ThreadCrashInfoFrame(
 				$printableFrame,
-				$rawFrame["file"] ?? "unknown",
+				$rawFrame["file"] ?? null,
 				$rawFrame["line"] ?? 0
 			);
 		}
@@ -687,5 +697,13 @@ final class Utils{
 
 		//jit not available
 		return null;
+	}
+
+	/**
+	 * Returns a random float between 0.0 and 1.0
+	 * Drop-in replacement for lcg_value()
+	 */
+	public static function getRandomFloat() : float{
+		return mt_rand() / mt_getrandmax();
 	}
 }
