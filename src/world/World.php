@@ -1007,7 +1007,7 @@ class World implements ChunkManager{
 		$this->tickChunks();
 		$this->timings->randomChunkUpdates->stopTiming();
 
-		$this->executeQueuedLightUpdates();
+		// $this->executeQueuedLightUpdates();
 
 		if(count($this->changedBlocks) > 0){
 			if(count($this->players) > 0){
@@ -1037,9 +1037,9 @@ class World implements ChunkManager{
 
 		}
 
-		if($this->sleepTicks > 0 && --$this->sleepTicks <= 0){
+		/*if($this->sleepTicks > 0 && --$this->sleepTicks <= 0){
 			$this->checkSleep();
-		}
+		}*/
 
 		foreach($this->packetBuffersByChunk as $index => $entries){
 			World::getXZ($index, $chunkX, $chunkZ);
@@ -1290,14 +1290,14 @@ class World implements ChunkManager{
 					$cache[$chunkHash] = false;
 					return false;
 				}
-				$lightPopulatedState = $adjacentChunk->isLightPopulated();
+				/*$lightPopulatedState = $adjacentChunk->isLightPopulated();
 				if($lightPopulatedState !== true){
 					if($lightPopulatedState === false){
 						$this->orderLightPopulation($chunkX + $cx, $chunkZ + $cz);
 					}
 					$cache[$chunkHash] = false;
 					return false;
-				}
+				}*/
 
 				$cache[$chunkHash] = true;
 			}
@@ -1986,7 +1986,7 @@ class World implements ChunkManager{
 		}
 
 		if($update){
-			$this->updateAllLight($x, $y, $z);
+			// $this->updateAllLight($x, $y, $z);
 			$this->internalNotifyNeighbourBlockUpdate($x, $y, $z);
 		}
 
@@ -2703,7 +2703,7 @@ class World implements ChunkManager{
 
 		if($entity instanceof Player){
 			unset($this->players[$entity->getId()]);
-			$this->checkSleep();
+			// $this->checkSleep();
 		}
 
 		unset($this->entities[$entity->getId()]);
@@ -3072,44 +3072,43 @@ class World implements ChunkManager{
 	 *
 	 * @throws WorldException if the terrain is not generated
 	 */
-	public function getSafeSpawn(?Vector3 $spawn = null) : Position{
-		if(!($spawn instanceof Vector3) || $spawn->y <= $this->minY){
-			$spawn = $this->getSpawnLocation();
-		}
+    public function getSafeSpawn(?Vector3 $spawn = null): Position {
+        if (!($spawn instanceof Vector3) || $spawn->y <= $this->minY) {
+            $spawn = $this->getSpawnLocation();
+        }
+        $maxY = $this->maxY - 2;
+        $minY = $this->minY;
+        $v = $spawn->floor();
 
-		$max = $this->maxY;
-		$v = $spawn->floor();
-		$chunk = $this->getOrLoadChunkAtPosition($v);
-		if($chunk === null){
-			throw new WorldException("Cannot find a safe spawn point in non-generated terrain");
-		}
-		$x = (int) $v->x;
-		$z = (int) $v->z;
-		$y = (int) min($max - 2, $v->y);
-		$wasAir = $this->getBlockAt($x, $y - 1, $z)->getTypeId() === BlockTypeIds::AIR; //TODO: bad hack, clean up
-		for(; $y > $this->minY; --$y){
-			if($this->getBlockAt($x, $y, $z)->isFullCube()){
-				if($wasAir){
-					$y++;
-				}
-				break;
-			}else{
-				$wasAir = true;
-			}
-		}
-
-		for(; $y >= $this->minY && $y < $max; ++$y){
-			if(!$this->getBlockAt($x, $y + 1, $z)->isFullCube()){
-				if(!$this->getBlockAt($x, $y, $z)->isFullCube()){
-					return new Position($spawn->x, $y === (int) $spawn->y ? $spawn->y : $y, $spawn->z, $this);
-				}
-			}else{
-				++$y;
-			}
-		}
-
-		return new Position($spawn->x, $y, $spawn->z, $this);
-	}
+        $chunk = $this->getOrLoadChunkAtPosition($v);
+        if ($chunk === null) {
+            throw new WorldException("Cannot find a safe spawn point in non-generated terrain");
+        }
+        $x = (int)$v->x;
+        $z = (int)$v->z;
+        $y = (int)min($maxY, $v->y);
+        $wasAir = false;
+        while ($y > $minY) {
+            $block = $this->getBlockAt($x, $y, $z);
+            if ($block->isFullCube()) {
+                if ($wasAir) {
+                    $y++;
+                }
+                break;
+            }
+            $wasAir = true;
+            $y--;
+        }
+        while ($y >= $minY && $y < $maxY) {
+            $blockBelow = $this->getBlockAt($x, $y, $z);
+            $blockAbove = $this->getBlockAt($x, $y + 1, $z);
+            if (!$blockAbove->isFullCube() && !$blockBelow->isFullCube()) {
+                return new Position($spawn->x, ($y === (int)$spawn->y) ? $spawn->y : $y, $spawn->z, $this);
+            }
+            $y++;
+        }
+        return new Position($spawn->x, $y, $spawn->z, $this);
+    }
 
 	/**
 	 * Gets the current time
